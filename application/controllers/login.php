@@ -17,7 +17,7 @@ class Login extends CI_Controller
 			'sign' => 0,
 			'view' => 'v_login',
 		 );
-		$this->load->view('main',$data);
+		$this->load->view('v_main',$data);
 	}
 
 	public function signup(){
@@ -27,7 +27,7 @@ class Login extends CI_Controller
 			'sign' => 1,
 			"view" => 'v_login',
 		 );
-		$this->load->view('main',$data);
+		$this->load->view('v_main',$data);
 
 	}
 	public function dosignup(){
@@ -55,16 +55,21 @@ class Login extends CI_Controller
         $query = $query->result();
 
         if($this->m_users->get_data_users()->num_rows()>0){
-           $data=$this->m_users->get_data_users();
+           $data=$this->m_users->get_data_users()->result();
+           // var_dump($data);
+           // echo $data[0]->id_users;
+           // die();
             $array=array(
                 'status'=> TRUE,
-                'id_users'=>$data->id_users,
-                'username'=>$data->username,
-                'email'=>$data->email,
-                'password'=>$data->password,
+                'id_users'=>$data[0]->id_users,
+                'username'=>$data[0]->username,
+                'email'=>$data[0]->email,
+                'password'=>$data[0]->password,
             );
             $this->session->set_userdata($array);
             $this->session->set_flashdata('pesan', 'Sukses Login');
+            // var_dump($array);
+            // die();
             redirect('post','refresh');
         }else{
             $this->session->set_flashdata('pesan_gagal','Username Atau Password Yang Anda Masukkan Salah');
@@ -75,7 +80,7 @@ class Login extends CI_Controller
 
 	public function do_logout(){
         $this->session->sess_destroy();
-        redirect('/login', 'refresh');
+        redirect('login', 'refresh');
     }
 }
 

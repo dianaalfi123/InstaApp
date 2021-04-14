@@ -1,5 +1,5 @@
 <style type="text/css">
-  
+   
   #btn1{
     background-color: white;
     color:#5fb759;
@@ -26,206 +26,102 @@
     font-family: 'Raleway', sans-serif;
     border-radius: 50px;
   }
+  .bg_gray.pattern{
+    background: url(<?=base_url('assets/images/slide-01.jpg');?>);
+  }
+  #alert_gagal{
+    background-color: red;
+    color: white;
+  }
+  #alert_sukses{
+    background-color: green;
+    color: white;
+  }
 </style>
 
-<div class="main-banner header-text" id="top">
-        <div class="Modern-Slider">
-          <!-- Item -->
-          <div class="item">
-            <?php if($sign != 1){?>
-              <!-- Tampilan Login -->
-              <div class="img-fill">
-                  <img src="<?=base_url('assets/images/slide-01.jpg')?>" alt="">
-                  <div class="text-content">
-                  <div class="row">
-                      <div class="col-lg-4 col-md-4 col-xs-12">
-                          <div class="left-text-content">
-                          </div>
+
+
+
+  <main class="bg_gray pattern">
+    
+    <div class="container margin_60_40">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+              <div class="sign_up">
+                    <div class="head">
+                        <div class="title">
+                        <h3 style="font-family: Ink Free;font-size: 40px;">.InstaApp</h3>
+                    </div>
+                    </div>
+                    <!-- /head -->
+                  <?php if($sign != 1){?>
+                    <form id="contact" action="<?php echo base_url('login/dologin');?>" method="post">
+                      <div class="main">
+                       <?php if($this->session->flashdata('pesan_gagal')){?>
+                          <a  class="btn_1 full-width mb_5" id='alert_gagal'><?= $this->session->flashdata('pesan_gagal'); ?></a>
+                       <?php }else if($this->session->flashdata('pesan_sukses')){ ?>
+                          <a  class="btn_1 full-width mb_5" id='alert_sukses'><?= $this->session->flashdata('pesan_sukses'); ?></a>
+                       <?php }?>
+                       
+                       
+                      <div class="form-group">
+                        <input class="form-control" name="username" type="text" placeholder="Username or Email" required="">
+                        <i class="icon_pencil"></i>
                       </div>
-                      <div class="col-lg-8 col-md-8 col-xs-12">
-                          <div class="contact-form">
-                              <form id="contact" action="<?php echo base_url('login/dologin');?>" method="post">
-                                <div class="row">
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <h3 style="font-family: Ink Free;font-size: 40px;">InstaApp</h3>
-                                      <fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-
-                                      
-                                    
-                                  <?php if($this->session->flashdata('pesan_gagal') || $this->session->flashdata('pesan_gagal')){?>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <font color="#8B0000" size="3"><b><?= $this->session->flashdata('pesan_gagal'); ?></font>
-                                        <font color="#006400" size="3"><?= $this->session->flashdata('pesan_sukses'); ?></font></b></center><br />
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <?php }?>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input name="username" type="text" id="username" placeholder="Username or Email" required="">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input name="password" type="password" id="password" placeholder="Password" required="">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input type="submit" id="btn1"  value="Login">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <a style="font-size: 11px;"  href="<?= base_url('login/signup');?>" class="main-stroked-button">Don't have an account? Sign Up</a>
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                    
-                                </div>
-                              </form>
-                          </div>
+                      <div class="form-group add_bottom_15">
+                        <input class="form-control" name='password' type='password' placeholder="Password" id="password_sign" name="password_sign" required="">
+                        <i class="icon_lock"></i>
                       </div>
-                  </div>
-
-                    
-                  </div>
-              </div>
-            <?php }else { ?>
-              <!-- Tampilan Sign up -->
-              <div class="img-fill">
-                  <img src="<?=base_url('assets/images/slide-01.jpg')?>" alt="">
-                  <div class="text-content">
-                  <div class="row">
-                      <div class="col-lg-4 col-md-4 col-xs-12">
-                          <div class="left-text-content">
-                          </div>
+                          <!-- <a href="confirm.html" class="btn_1 full-width mb_5">Sign up Now</a> -->
+                          <input type="submit" class="btn_1 full-width mb_5"  value="Login">
                       </div>
-                      <div class="col-lg-8 col-md-8 col-xs-12">
-                          <div class="contact-form">
-                              <form id="contact" action="<?=base_url('login/dosignup')?>" method="post">
-                                <div class="row">
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <h3 style="font-family: Ink Free;font-size: 40px;">InstaApp</h3>
-                                      <font color="red" size="3"><b><?= $this->session->flashdata('pesan_gagal'); ?></font>
-                                      <font color="green" size="3"><?= $this->session->flashdata('pesan_sukses'); ?></font></b></center><br />
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <?php if($this->session->flashdata('pesan_gagal') || $this->session->flashdata('pesan_gagal')){?>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <font color="#8B0000" size="3"><b><?= $this->session->flashdata('pesan_gagal'); ?></font>
-                                        <font color="#006400" size="3"><?= $this->session->flashdata('pesan_sukses'); ?></font></b></center><br />
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <?php }?>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input name="name" type="text" id="text" placeholder="Full Name" required="">
-                                      
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input name="email" type="email" id="email" placeholder="Email" required="">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input name="username" type="text" id="username" placeholder="Username" required="">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input name="password" type="password" id="password" placeholder="Password" required="">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <input type="submit" id="btn1"  value="Sign Up">
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                      <a style="" href="<?= base_url('login');?>" class="main-stroked-button">Have an account? Log in</a>
-                                    </fieldset>
-                                  </div>
-                                  <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                    </fieldset>
-                                  </div>
-
-                                </div>
-                              </form>
-                          </div>
+                      <div >
+                          <a style="font-size: 11px;"  href="<?= base_url('login/signup');?>" class="btn_1 full-width mb_5">Don't have an account? Sign Up</a>
+                        
                       </div>
-                  </div>
-                    
-                    
-                  </div>
-              </div>
-            <?php }?>
-          </div>
+                    </form>
+                  <?php }else{ ?>
+                    <form id="contact" action="<?php echo base_url('login/dosignup');?>" method="post">
+                      <div class="main">
+                       <?php if($this->session->flashdata('pesan_gagal')){?>
+                          <a  class="btn_1 full-width mb_5" id='alert_gagal'><?= $this->session->flashdata('pesan_gagal'); ?></a>
+                       <?php }else if($this->session->flashdata('pesan_sukses')){ ?>
+                          <a  class="btn_1 full-width mb_5" id='alert_sukses'><?= $this->session->flashdata('pesan_sukses'); ?></a>
+                       <?php }?>
+                       
+                       
+                      <div class="form-group">
+                        <input class="form-control" name="name" type="text" placeholder="Full Name" required="">
+                        <i class="icon_pencil"></i>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" name="email" type="email" placeholder="Email" required="">
+                        <i class="icon_mail"></i>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" name="username" type="text" placeholder="Username" required="">
+                        <i class="icon_pencil"></i>
+                      </div>
+                      <div class="form-group add_bottom_15">
+                        <input class="form-control" name='password' type='password' placeholder="Password" id="password" required="">
+                        <i class="icon_lock"></i>
+                      </div>
+                          <input type="submit" class="btn_1 full-width mb_5"  value="Sign Up">
+                      </div>
+                      <div >
+                          <a style="font-size: 11px;"  href="<?= base_url('login');?>" class="btn_1 full-width mb_5">Have an account? Log in</a>
+                        
+                      </div>
+                    </form>
+                  <?php }?>
+                </div>
+                <!-- /box_booking -->
+            </div>
+            <!-- /col -->
 
-
-          <!-- // Item -->
         </div>
-</div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+    
+  </main>
